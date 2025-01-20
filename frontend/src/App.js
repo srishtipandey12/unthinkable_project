@@ -21,7 +21,7 @@ function App() {
 
     try {
       setUploadStatus('Uploading...');
-      const response = await axios.post('https://pdf-summary-production.up.railway.app/api/v1/files/file-upload', formData, {
+      const response = await axios.post('https://unthinkableproject-production.up.railway.app/api/v1/files/file-upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -40,7 +40,7 @@ function App() {
 
     try {
       const responseText = await axios.post(
-        'https://pdf-summary-production.up.railway.app/api/v1/files/extract-text',
+        'https://unthinkableproject-production.up.railway.app/api/v1/files/extract-text',
         { filePath },
         {
           headers: {
