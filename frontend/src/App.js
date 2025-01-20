@@ -57,14 +57,14 @@ function App() {
     if (!pdfText) return alert('No text extracted. Please extract text first.');
   
     const payload = {
-      inputs: pdfText, // The extracted text
+      inputs: pdfText, 
     };
   
     try {
       const response = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.REACT_APP_AI_API_KEY}`, // Replace with your Hugging Face API key
+          "Authorization": `Bearer ${process.env.REACT_APP_AI_API_KEY}`, 
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
@@ -72,7 +72,7 @@ function App() {
   
       const result = await response.json();
       if (result && result[0] && result[0].summary_text) {
-        setSummarizedText(result[0].summary_text); // Set the summarized text in the state
+        setSummarizedText(result[0].summary_text);
       } else {
         setSummarizedText("Failed to summarize text.");
       }

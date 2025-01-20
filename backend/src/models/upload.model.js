@@ -5,37 +5,37 @@ const uploadSchema = new Schema(
   {
     file: {
       type: String,
-      required: true, // Cloudinary URL of the file
+      required: true, 
     },
     fileType: {
       type: String,
-      enum: ["pdf", "image"], // Restrict file types to "pdf" or "image"
+      enum: ["pdf", "image"], 
       required: true,
     },
     title: {
       type: String,
-      required: true, // Title of the file (can default to the file name)
+      required: true, 
     },
     description: {
-      type: String, // Optional description of the file
+      type: String, 
     },
     extractedText: {
-      type: String, // Text extracted from the file (if applicable)
+      type: String, 
     },
     summary: {
-      short: { type: String }, // Short summary
-      medium: { type: String }, // Medium-length summary
-      long: { type: String }, // Long summary
+      short: { type: String }, 
+      medium: { type: String }, 
+      long: { type: String }, 
     },
     highlightedPoints: {
-      type: [String], // Array of key points highlighted in the file
+      type: [String],
     },
     isProcessed: {
       type: Boolean,
-      default: false, // Indicates if the file has been processed for text extraction
+      default: false,
     },
   },
-  { timestamps: true } // Automatically add createdAt and updatedAt timestamps
+  { timestamps: true } 
 );
 
 uploadSchema.plugin(mongooseAggregatePaginate);
