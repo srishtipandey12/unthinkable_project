@@ -8,6 +8,7 @@ function App() {
   const [filePath, setFilePath] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [summaryStatus, setSummaryStatusStatus] = useState('');
+  const [extractStatus, setExtractStatusStatus] = useState('');
   const [summarizedText, setSummarizedText] = useState('');
 
   const handleFileChange = (e) => {
@@ -37,6 +38,7 @@ function App() {
   };
 
   const extractTextFromPDF = async () => {
+    setExtractStatusStatus("Extracting....");
     if (!filePath) return alert('No file uploaded. Please upload a file first.');
 
     try {
@@ -49,7 +51,7 @@ function App() {
           },
         }
       );
-
+    setExtractStatusStatus("Extracting Successful.");
       setPdfText(responseText.data.data.text);
     } catch (error) {
       console.error('Error extracting text:', error);
@@ -73,7 +75,7 @@ function App() {
       });
   
       const result = await response.json();
-       setSummaryStatusStatus("Summarized Successfull.");
+       setSummaryStatusStatus("Summarized Successful.");
       if (result && result[0] && result[0].summary_text) {
         setSummarizedText(result[0].summary_text);
       } else {
@@ -109,6 +111,7 @@ function App() {
         <button onClick={extractTextFromPDF} className="extract-button">
           Extract Text
         </button>
+      <p className="status">{extractStatus}</p>
         {pdfText && (
           <div className="result">
             <h3>Extracted Text</h3>
